@@ -6,7 +6,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"), // the bundle output path
     filename: "bundle.js", // the name of the bundle
+    publicPath: '/',
   },
+  devtool: 'eval-source-map',
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
@@ -14,7 +16,23 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 3000, // you can change the port
+    host: 'localhost',
+    port: 8080, // you can change the port
+    open: true,
+    hot: true,
+    historyApiFallback: true,
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+      // match the output 'publicPath'
+    },
+    proxy: [
+      {
+        context: ['/events/**'],
+        target: 'http://localhost:3000',
+        secure: false,
+      },
+    ],
   },
   module: {
     rules: [

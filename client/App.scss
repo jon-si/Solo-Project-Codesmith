@@ -1,3 +1,74 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 h1 {
-    color: red;
+  color: rgb(3, 70, 253);
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+#calendar {
+  display: flex;
+  justify-content: center;
+  // flex-direction: column;
+}
+
+.outerBox {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekBox {
+  // border-radius: 5px;
+  // border: 1px solid black;
+  // padding: 5px 5px 5px 5px;
+}
+
+.dayBox {
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  padding: 50px;
+  // margin: 20px; 
+  text-align: start;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  position: relative;
+  .dateNum {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    color: rgb(0, 0, 0);
+  
   }
+  .events{
+    position: absolute;
+    top: 0px; left: 0px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    background-color: rgba(236, 236, 236, 0.1);
+    height: 100%;
+    width: 100%;
+  }
+  .events:hover {
+    background-color: rgba(182, 181, 181, 0.1);
+    // box-shadow: 0px 1px rgb(189, 189, 189, 0.5);
+  }
+  .events:active {
+    background-color:rgba(97, 95, 95, 0.1);
+    // box-shadow: 0 5px #666; 
+    top: 0.5%; left: 0.5%;
+    height: 99%; width: 99%;
+  }
+}
+
+#eventpage {
+  display: flex;
+  justify-content: center;
+}
+

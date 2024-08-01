@@ -1,9 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { BrowserRouter } from 'react-router-dom';
+
 import App from "./App.js";
+import Events from "./Events.js";
 import "./App.scss";
-import { Provider } from 'react-redux';
 
-const el = document.getElementById("app");
+render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,  
+  document.getElementById("app"),
+);
 
-ReactDOM.render(<App />, el);
+// document.getElementById("app"),
