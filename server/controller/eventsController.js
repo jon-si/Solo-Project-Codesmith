@@ -1,24 +1,36 @@
 const fs = require('fs/promises');
 const fsCallback = require('fs');
 const path = require('path');
+const Events = require('../models/eventsModel');
 
 const eventsController = {};
 
 eventsController.getEvents = (req, res, next) => {
-  console.log('getting events');
+  console.log(req.params.id, 'getting events');
 
   //take from database
-  res.locals.events = {
-    codesmith: {start: "1:30", end: "10:30"},
-  }
-  return next();
+  Events.find({date: req.params.id})
+  .then(event => {
+    console.log(event);
+    res.locals.eventList = event;
+    return next();
+  })
+  .catch(err => {
+    return next(err);
+  })
 }
 
 eventsController.postEvents = (req, res, next) => {
-  const {name, start, end} = req.body
-  console.log(req.body);
-  res.locals.block = req.body;
-  return next();
+  const {date, name, startTime, endTime} = req.body
+  // console.log(date, name, startTime, endTime);
+  Events.create({date, name, start: startTime, end: endTime})
+  .then(user => {
+    // console.log(user);
+    return next();
+  })
+  .catch(err => {
+    return next(err);
+  })
 }
 
 module.exports = eventsController;

@@ -8,7 +8,6 @@ const MainContainer = props => {
   }
   return (
   <div className="container">
-    <h1 id="header">Calendar</h1>
     <div className="outerBox">
         {weeks}
     </div>

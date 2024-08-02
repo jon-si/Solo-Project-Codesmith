@@ -1,8 +1,12 @@
+// require('../.env').config();
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = 3000;
+const mongoURI = 'mongodb+srv://jonathansi778:fwtGwYw6j7OIXW71@cluster0.oayzujn.mongodb.net/';
+mongoose.connect(mongoURI);
 
 const eventsRouter = require('./routes/events.js');
 
@@ -33,8 +37,12 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send({ error: err });
 });
-  
-app.listen(PORT, ()=>{ console.log(`Listening on port ${PORT}...`); });
+
+mongoose.connection.once('open', () => {
+  console.log('connected to mongo');
+  app.listen(PORT, ()=>{ console.log(`Listening on port ${PORT}...`); });
+})
+
   
 module.exports = app;
   

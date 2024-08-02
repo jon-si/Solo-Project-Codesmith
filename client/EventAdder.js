@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const EventAdder = props => {
   const [state, setState] = useState({
-    name: 'jon',
-    start: '0:00',
-    end: '12:00',
+    name: '',
+    start: '',
+    end: '',
   });
 
   const parseTime = (time) => {

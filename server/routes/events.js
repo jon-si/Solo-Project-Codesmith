@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/:id',
   eventsController.getEvents,
   (req, res) => {
-    return res.status(250).json(res.locals);
+    return res.status(250).json(res.locals.eventList);
   }
 )
 
